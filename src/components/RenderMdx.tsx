@@ -41,12 +41,12 @@ const RenderMdx = ({ article, category_url }: IPropsType) => {
       <p className='px-6'>Created On:
         <span>{format(Number(article.metadata.createdAt), "LLL d, yyy")}</span></p>
       <Markdown
-        className='my-2
+        className='my-2 w-[98vw]
             p-4 prose-p:text-foreground prose-headings:text-foreground
             prose-p:text-justify prose-a:text-foreground
             prose-blockquote:leading-6 sm:prose-blockquote:leading-7
             md:prose-blockquote:leading-8 
-            prose prose-xl 
+            prose prose-lg 
             prose-blockquote:border-l-4  prose-blockquote:border-l-primary
             prose-blockquote:p-1 prose-code:font-code
             prose-blockquote:px-4
