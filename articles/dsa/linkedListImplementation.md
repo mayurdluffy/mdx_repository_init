@@ -15,7 +15,7 @@ Linked List is a linear data structure that can be implemented using
 In this tutorial, I have implementing a singly linked list in both the ways, so that you can understand both the implementation and be comfortable with both stuctures and classes while woking with any linear or hirerchical data structure.
 
 ## Class based Implementation
-```
+```C++
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -220,7 +220,7 @@ int main(){
 
 ## Struct based Implementation
 
-```
+```C++
 #include<bits/stdc++.h>
 using namespace std;
 
