@@ -22,7 +22,7 @@ interface IPropType {
 const Cards = ({ article_metadata, category_url }: IPropType) => {
     return (
         <div className=''>
-            <Card className='shadow-md border-t-2 border-t-primary'>
+            <Card className='shadow-md border-l-2 border-l-primary'>
                 <CardHeader>
                     <Link href={`/articles/${slugger(article_metadata.title)}`}>
                         <CardTitle className='hover:text-primary'>{article_metadata.title}</CardTitle>

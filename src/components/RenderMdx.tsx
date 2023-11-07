@@ -1,12 +1,18 @@
+"use client"
 import React from 'react'
-import Markdown from 'markdown-to-jsx';
-
+import Markdown from 'react-markdown';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {materialDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { IDsaArticles, INotesArticles } from '@/utils/types';
 import Tags from './sub_components/Tags';
 import { format } from 'date-fns';
 import Subtags from './sub_components/Subtags';
 import slugger from '@/utils/slugger';
 import { nanoid } from 'nanoid/non-secure';
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from 'remark-gfm'
 
 interface IPropsType {
   article: INotesArticles | IDsaArticles,
@@ -14,6 +20,12 @@ interface IPropsType {
 }
 
 const RenderMdx = ({ article, category_url }: IPropsType) => {
+
+  const codeOptions = {
+    theme: 'github-dark',
+    grid: false,
+  }
+
   return (
     <div className='w-[fit-content] p-1'>
       <div className='my-2 px-4 flex gap-2'>
@@ -52,9 +64,29 @@ const RenderMdx = ({ article, category_url }: IPropsType) => {
             prose-blockquote:px-4
             prose-blockquote:not-italic
             prose-blockquote:rounded-r-md'
-      >
-        {article.content.toString()}
-      </Markdown>
+        
+            children={article.content.toString()}
+            // components={{
+            //   code(props) {
+            //     const {children, className, node, ...rest} = props
+            //     const match = /language-(\w+)/.exec(className || '')
+            //     return match ? (
+            //       <SyntaxHighlighter
+            //         children={String(children).replace(/\n$/, '')}
+            //         style={materialDark}
+            //         language={match[1]}
+            //         PreTag="div"
+            //       />
+            //     ) : (
+            //       <code {...rest} className={className}>
+            //         {children}
+            //       </code>
+            //     )
+            //   }
+            // }}
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeSlug, [rehypeAutolinkHeadings, {behavior: "append"}]]}
+      />
     </div>
   )
 }
