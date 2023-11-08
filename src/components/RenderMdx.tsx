@@ -65,7 +65,7 @@ const RenderMdx = ({ article, category_url }: IPropsType) => {
             prose-blockquote:not-italic
             prose-blockquote:rounded-r-md'
         
-            children={article.content.toString()}
+            // children={article.content.toString()}
             // components={{
             //   code(props) {
             //     const {children, className, node, ...rest} = props
@@ -86,7 +86,9 @@ const RenderMdx = ({ article, category_url }: IPropsType) => {
             // }}
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeSlug, [rehypeAutolinkHeadings, {behavior: "append"}]]}
-      />
+      >
+        {article.content.toString()}
+      </Markdown>
     </div>
   )
 }
